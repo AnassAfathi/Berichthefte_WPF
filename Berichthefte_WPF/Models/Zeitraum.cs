@@ -8,8 +8,8 @@ namespace Berichthefte_WPF.Models
 {
     public class Zeitraum
     {
-        public DateTime Von { get; set; }
-        public DateTime Bis { get; set; }
+        public DateTime? Von { get; set; }
+        public DateTime? Bis { get; set; }
         public int KalenderWoche { get; set; }
         public int AusbildungsnachweisNr { get; set; }
     }
