@@ -22,6 +22,8 @@ namespace Berichthefte_WPF
             // Initialize theme toggle state
             ThemeToggleButton.IsChecked = ThemeManager.CurrentTheme == Theme.Dark;
             
+            // Update dashboard
+            UpdateDashboard();
             UpdateTotals();
         }
 
@@ -29,6 +31,24 @@ namespace Berichthefte_WPF
         {
             var toggle = (ToggleButton)sender;
             ThemeManager.CurrentTheme = toggle.IsChecked == true ? Theme.Dark : Theme.Light;
+        }
+
+        // ================= DASHBOARD UPDATE =================
+        private void UpdateDashboard()
+        {
+            double betrieb = GetBetrieblichTotal();
+            double schule = GetSchoolTotal();
+            int activities = _vm.CurrentBerichtsheft.Betrieb.Count + _vm.CurrentBerichtsheft.Schule.Count;
+            double gesamtStunden = betrieb + schule;
+
+            BetrieblicheStundenValue.Text = betrieb.ToString("F1");
+            SchulischeStundenValue.Text = schule.ToString("F1");
+            AnzahlAktivitätenValue.Text = activities.ToString();
+            GesamtStundenValue.Text = gesamtStunden.ToString("F1");
+
+            BetrieblicheProgress.Value = Math.Min(betrieb / 40.0 * 100, 100);
+            SchulischeProgress.Value = Math.Min(schule / 40.0 * 100, 100);
+            GesamtProgress.Value = Math.Min(gesamtStunden / 80.0 * 100, 100);
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -96,6 +116,7 @@ namespace Berichthefte_WPF
 
             ActivitiesListBox.Items.Refresh();
             UpdateTotals();
+            UpdateDashboard();
 
             NewActivityName.Clear();
             NewActivityHours.Clear();
@@ -119,6 +140,7 @@ namespace Berichthefte_WPF
                     _vm.CurrentBerichtsheft.Betrieb.Remove(t);
                     ActivitiesListBox.Items.Refresh();
                     UpdateTotals();
+                    UpdateDashboard();
                 }
             }
         }
@@ -146,6 +168,7 @@ namespace Berichthefte_WPF
 
             SchoolListBox.Items.Refresh();
             UpdateTotals();
+            UpdateDashboard();
 
             NewSchoolFach.Clear();
             NewSchoolBeschreibung.Clear();
@@ -168,6 +191,7 @@ namespace Berichthefte_WPF
                     _vm.CurrentBerichtsheft.Schule.Remove(t);
                     SchoolListBox.Items.Refresh();
                     UpdateTotals();
+                    UpdateDashboard();
                 }
             }
         }
@@ -189,6 +213,9 @@ namespace Berichthefte_WPF
 
             TotalHoursTextBlock.Text =
                 $"Gesamtstunden (Betrieb + Schule): {betrieb + schule}";
+
+            // Update Dashboard
+            UpdateDashboard();
         }
 
         private void SchoolTotalHoursTextBox_TextChanged(object sender, TextChangedEventArgs e)
