@@ -1,32 +1,24 @@
 ﻿<Window x:Class="Berichthefte_WPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
         Title="Berichtsheft"
         Height="900"
         Width="760"
         WindowStartupLocation="CenterScreen"
-        Background="#F5F7FB">
+        Background="{DynamicResource WindowBackground}">
 
     <Window.Resources>
-        <SolidColorBrush x:Key="PrimaryBrush" Color="#2F5D9F"/>
-        <SolidColorBrush x:Key="AccentBrush" Color="#EAF2FF"/>
-        <SolidColorBrush x:Key="BorderBrushCustom" Color="#D6DCE5"/>
-        <SolidColorBrush x:Key="CardBackgroundBrush" Color="White"/>
-        <SolidColorBrush x:Key="DangerBrush" Color="#D9534F"/>
-        <SolidColorBrush x:Key="DangerHoverBrush" Color="#C9302C"/>
-        <SolidColorBrush x:Key="ButtonBrush" Color="#2F5D9F"/>
-        <SolidColorBrush x:Key="ButtonHoverBrush" Color="#24497E"/>
-
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe UI"/>
             <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Foreground" Value="#1F2937"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
         </Style>
 
         <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
             <Setter Property="Margin" Value="0,0,0,12"/>
         </Style>
 
@@ -42,18 +34,21 @@
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Padding" Value="8,6"/>
             <Setter Property="Margin" Value="0,4,0,4"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrushCustom}"/>
+            <Setter Property="Background" Value="{DynamicResource TextBoxBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrushCustom}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="CaretBrush" Value="{DynamicResource TextBoxForeground}"/>
         </Style>
 
         <Style TargetType="DatePicker">
             <Setter Property="FontFamily" Value="Segoe UI"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Margin" Value="0,4,0,4"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrushCustom}"/>
+            <Setter Property="Background" Value="{DynamicResource TextBoxBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrushCustom}"/>
             <Setter Property="BorderThickness" Value="1"/>
         </Style>
 
@@ -62,8 +57,9 @@
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Padding" Value="6,4"/>
             <Setter Property="Margin" Value="0,4,0,4"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrushCustom}"/>
+            <Setter Property="Background" Value="{DynamicResource TextBoxBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrushCustom}"/>
             <Setter Property="BorderThickness" Value="1"/>
         </Style>
 
@@ -72,15 +68,16 @@
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Margin" Value="0,6,0,8"/>
             <Setter Property="Padding" Value="8"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrushCustom}"/>
+            <Setter Property="Background" Value="{DynamicResource TextBoxBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrushCustom}"/>
             <Setter Property="BorderThickness" Value="1"/>
         </Style>
 
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="{StaticResource ButtonBrush}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource ButtonBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource ButtonBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ButtonBrush}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="14,8"/>
             <Setter Property="Margin" Value="4"/>
@@ -98,7 +95,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource ButtonHoverBrush}"/>
+                                <Setter Property="Background" Value="{DynamicResource ButtonHoverBrush}"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="Opacity" Value="0.9"/>
@@ -111,8 +108,8 @@
 
         <Style x:Key="DangerButtonStyle" TargetType="Button">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="{StaticResource DangerBrush}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource DangerBrush}"/>
+            <Setter Property="Background" Value="#D9534F"/>
+            <Setter Property="BorderBrush" Value="#D9534F"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Width" Value="28"/>
             <Setter Property="Height" Value="28"/>
@@ -130,7 +127,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource DangerHoverBrush}"/>
+                                <Setter Property="Background" Value="#C9302C"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="Opacity" Value="0.9"/>
@@ -142,8 +139,8 @@
         </Style>
 
         <Style x:Key="CardStyle" TargetType="Border">
-            <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrushCustom}"/>
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrushCustom}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="12"/>
             <Setter Property="Padding" Value="18"/>
@@ -151,283 +148,348 @@
         </Style>
     </Window.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="18">
+    <Grid Background="{DynamicResource WindowBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <!-- ================= TRAINEE ================= -->
-            <Border Style="{StaticResource CardStyle}">
-                <StackPanel>
-                    <TextBlock Text="Trainee Info" Style="{StaticResource SectionTitleStyle}"/>
-
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="160"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Text="Name:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Grid.Row="1" Text="Firma:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Firma, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Grid.Row="2" Text="Abteilung:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Abteilung, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Grid.Row="3" Text="Ausbildungsjahr:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Ausbildungsjahr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </Grid>
-                </StackPanel>
-            </Border>
-
-            <!-- ================= Zeitraum ================= -->
-            <Border Style="{StaticResource CardStyle}">
-                <StackPanel>
-                    <TextBlock Text="Zeitraum" Style="{StaticResource SectionTitleStyle}"/>
-
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="190"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Text="Ausbildungsnachweis Nr.:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Grid.Column="1"
-                                 Text="{Binding CurrentBerichtsheft.Zeitraum.AusbildungsnachweisNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Grid.Row="1" Text="Woche:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Grid.Row="1" Grid.Column="1"
-                                 Text="{Binding CurrentBerichtsheft.Zeitraum.KalenderWoche, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Grid.Row="2" Text="Von:" Style="{StaticResource LabelStyle}"/>
-                        <DatePicker Grid.Row="2" Grid.Column="1"
-                                    SelectedDate="{Binding CurrentBerichtsheft.Zeitraum.Von, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Grid.Row="3" Text="Bis:" Style="{StaticResource LabelStyle}"/>
-                        <DatePicker Grid.Row="3" Grid.Column="1"
-                                    SelectedDate="{Binding CurrentBerichtsheft.Zeitraum.Bis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </Grid>
-                </StackPanel>
-            </Border>
-
-            <!-- ================= BETRIEB ================= -->
-            <Border Style="{StaticResource CardStyle}">
-                <StackPanel>
-                    <TextBlock Text="Betriebliche Tätigkeiten" Style="{StaticResource SectionTitleStyle}"/>
-
-                    <ListBox ItemsSource="{Binding CurrentBerichtsheft.Betrieb}" Height="150" x:Name="ActivitiesListBox">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0,3">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="260"/>
-                                        <ColumnDefinition Width="70"/>
-                                        <ColumnDefinition Width="120"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Text="{Binding Aktivitaet}" VerticalAlignment="Center"/>
-                                    <TextBlock Grid.Column="1" Text="{Binding Stunden}" VerticalAlignment="Center"/>
-                                    <TextBlock Grid.Column="2" Text="{Binding Typ}" VerticalAlignment="Center"/>
-
-                                    <Button Grid.Column="3"
-                                            Content="×"
-                                            Click="DeleteActivityButton_Click"
-                                            DataContext="{Binding}"
-                                            Style="{StaticResource DangerButtonStyle}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-
-                    <TextBlock x:Name="TotalBetrieblichHoursTextBlock"
-                               FontFamily="Segoe UI Semibold"
-                               Foreground="{StaticResource PrimaryBrush}"
-                               Margin="0,6,0,12"/>
-
-                    <!-- Column Headers for Input Fields -->
-                    <Grid Margin="0,0,0,6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="260"/>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="120"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Beschreibung" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
-                        <TextBlock Grid.Column="1" Text="Stunden" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
-                        <TextBlock Grid.Column="2" Text="Typ" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
-                    </Grid>
-
-                    <!-- Input Fields -->
-                    <Grid Margin="0,0,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="260"/>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="120"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBox x:Name="NewActivityName" Margin="0,4,8,4"/>
-                        <TextBox Grid.Column="1" x:Name="NewActivityHours" Margin="0,4,8,4"/>
-                        <ComboBox Grid.Column="2" x:Name="NewActivityType" SelectedIndex="0" Margin="0,4,8,4">
-                            <ComboBoxItem Content="Normal"/>
-                            <ComboBoxItem Content="Urlaub"/>
-                            <ComboBoxItem Content="Krank"/>
-                        </ComboBox>
-
-                        <Button Grid.Column="3"
-                                Content="Add"
-                                Click="AddActivityButton_Click"
-                                Style="{StaticResource PrimaryButtonStyle}"
-                                Margin="0,4,0,4"/>
-                    </Grid>
-                </StackPanel>
-            </Border>
-
-            <!-- ================= BESCHREIBUNG ================= -->
-            <Border Style="{StaticResource CardStyle}">
-                <StackPanel>
-                    <TextBlock Text="Beschreibung eines Arbeitsvorgangs"
-                               Style="{StaticResource SectionTitleStyle}"/>
-
-                    <TextBox Text="{Binding CurrentBerichtsheft.Beschreibung, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             AcceptsReturn="True"
-                             TextWrapping="Wrap"
-                             VerticalScrollBarVisibility="Auto"
-                             Height="170"/>
-                </StackPanel>
-            </Border>
-
-            <!-- ================= SCHULE ================= -->
-            <Border Style="{StaticResource CardStyle}">
-                <StackPanel>
-                    <TextBlock Text="Schulaktivitäten" Style="{StaticResource SectionTitleStyle}"/>
-
-                    <ListBox ItemsSource="{Binding CurrentBerichtsheft.Schule}" Height="150" x:Name="SchoolListBox">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0,3">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="180"/>
-                                        <ColumnDefinition Width="260"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Text="{Binding Fach}" VerticalAlignment="Center"/>
-                                    <TextBlock Grid.Column="1"
-                                               Text="{Binding Beschreibung}"
-                                               TextWrapping="Wrap"
-                                               VerticalAlignment="Center"/>
-
-                                    <Button Grid.Column="2"
-                                            Content="×"
-                                            Click="DeleteSchoolActivityButton_Click"
-                                            DataContext="{Binding}"
-                                            Style="{StaticResource DangerButtonStyle}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-
-                    <!-- Column Headers for Input Fields -->
-                    <Grid Margin="0,6,0,6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="180"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Fach" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
-                        <TextBlock Grid.Column="1" Text="Beschreibung" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
-                    </Grid>
-
-                    <!-- Input Fields -->
-                    <Grid Margin="0,0,0,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="180"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBox x:Name="NewSchoolFach" Margin="0,4,8,4"/>
-                        <TextBox Grid.Column="1" x:Name="NewSchoolBeschreibung" Margin="0,4,0,4"/>
-                    </Grid>
-
-                    <Button Content="Add Schulaktivität"
-                            Click="AddSchoolActivityButton_Click"
-                            Width="170"
-                            Style="{StaticResource PrimaryButtonStyle}"
-                            HorizontalAlignment="Left"
-                            Margin="0,0,0,0"/>
-                </StackPanel>
-            </Border>
-
-            <!-- ================= HOURS ================= -->
-            <Border Style="{StaticResource CardStyle}">
-                <StackPanel>
-                    <TextBlock Text="Stundenübersicht" Style="{StaticResource SectionTitleStyle}"/>
-
-                    <Grid Margin="0,4,0,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="120"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Schule Gesamtstunden:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Grid.Column="1"
-                                 x:Name="SchoolTotalHoursTextBox"
-                                 Text="{Binding CurrentBerichtsheft.TotalSchulStunden, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 TextChanged="SchoolTotalHoursTextBox_TextChanged"/>
-                    </Grid>
-
-                    <TextBlock x:Name="TotalHoursTextBlock"
-                               FontFamily="Segoe UI Semibold"
-                               Foreground="{StaticResource PrimaryBrush}"
-                               Margin="0,6,0,0"/>
-                </StackPanel>
-            </Border>
-
-            <!-- ================= ACTIONS ================= -->
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right"
-                        Margin="0,4,0,16">
-                <Button Content="Clear All"
-                        Click="ClearAllButton_Click"
-                        Width="120"
-                        Height="38"
-                        Background="#DC3545"
-                        Foreground="White"
-                        FontFamily="Segoe UI Semibold"
-                        FontSize="13"
-                        Cursor="Hand"
-                        Margin="0,0,10,0"/>
-
-                <Button Content="Als PDF exportieren"
-                        Command="{Binding ExportPdfCommand}"
-                        Width="170"
-                        Height="38"
-                        Margin="0,0,10,0"
-                        Style="{StaticResource PrimaryButtonStyle}"/>
-
-                <Button Content="Save"
-                        Width="110"
-                        Height="38"
-                        Click="SaveButton_Click"
-                        Style="{StaticResource PrimaryButtonStyle}"/>
-            </StackPanel>
+        <!-- Theme Toggle Bar -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="18,12,18,0">
+            <TextBlock Text="🌙" VerticalAlignment="Center" Margin="0,0,12,0" FontSize="16"/>
+            
+            <!-- Custom Toggle Switch -->
+            <ToggleButton x:Name="ThemeToggleButton" 
+                         Width="60" Height="28" 
+                         Click="ThemeToggleButton_Click"
+                         Background="Transparent"
+                         Foreground="White"
+                         ToolTip="Toggle Dark/Light Mode"
+                         Padding="0">
+                <ToggleButton.Template>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid Background="Transparent">
+                            <!-- Background Track -->
+                            <Border Background="#E0E0E0"
+                                    CornerRadius="14"
+                                    BorderThickness="2"
+                                    BorderBrush="#D0D0D0"/>
+                            
+                            <!-- Animated Circle -->
+                            <Border x:Name="SwitchCircle" 
+                                   Width="24" Height="24"
+                                   Background="White"
+                                   CornerRadius="12"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="2,0,0,0"/>
+                        </Grid>
+                        
+                        <!-- Triggers for Animation -->
+                        <ControlTemplate.Triggers>
+                            <!-- Unchecked = Light Mode (Circle on Left) -->
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="SwitchCircle" Property="HorizontalAlignment" Value="Left"/>
+                                <Setter TargetName="SwitchCircle" Property="Margin" Value="2,0,0,0"/>
+                            </Trigger>
+                            
+                            <!-- Checked = Dark Mode (Circle on Right) -->
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="SwitchCircle" Property="HorizontalAlignment" Value="Right"/>
+                                <Setter TargetName="SwitchCircle" Property="Margin" Value="0,0,2,0"/>
+                            </Trigger>
+                            
+                            <!-- Hover Effect -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="SwitchCircle" Property="Background" Value="#F5F5F5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+            
+            <TextBlock Text="☀️" VerticalAlignment="Center" Margin="12,0,0,0" FontSize="16"/>
         </StackPanel>
-    </ScrollViewer>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="18">
+
+                <!-- ================= TRAINEE ================= -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Trainee Info" Style="{StaticResource SectionTitleStyle}"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Name:" Style="{StaticResource LabelStyle}"/>
+                            <TextBox Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <TextBlock Grid.Row="1" Text="Firma:" Style="{StaticResource LabelStyle}"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Firma, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <TextBlock Grid.Row="2" Text="Abteilung:" Style="{StaticResource LabelStyle}"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Abteilung, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <TextBlock Grid.Row="3" Text="Ausbildungsjahr:" Style="{StaticResource LabelStyle}"/>
+                            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Ausbildungsjahr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- ================= Zeitraum ================= -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Zeitraum" Style="{StaticResource SectionTitleStyle}"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="190"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Ausbildungsnachweis Nr.:" Style="{StaticResource LabelStyle}"/>
+                            <TextBox Grid.Column="1"
+                                     Text="{Binding CurrentBerichtsheft.Zeitraum.AusbildungsnachweisNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <TextBlock Grid.Row="1" Text="Woche:" Style="{StaticResource LabelStyle}"/>
+                            <TextBox Grid.Row="1" Grid.Column="1"
+                                     Text="{Binding CurrentBerichtsheft.Zeitraum.KalenderWoche, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <TextBlock Grid.Row="2" Text="Von:" Style="{StaticResource LabelStyle}"/>
+                            <DatePicker Grid.Row="2" Grid.Column="1"
+                                        SelectedDate="{Binding CurrentBerichtsheft.Zeitraum.Von, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <TextBlock Grid.Row="3" Text="Bis:" Style="{StaticResource LabelStyle}"/>
+                            <DatePicker Grid.Row="3" Grid.Column="1"
+                                        SelectedDate="{Binding CurrentBerichtsheft.Zeitraum.Bis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- ================= BETRIEB ================= -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Betriebliche Tätigkeiten" Style="{StaticResource SectionTitleStyle}"/>
+
+                        <ListBox ItemsSource="{Binding CurrentBerichtsheft.Betrieb}" Height="150" x:Name="ActivitiesListBox">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="260"/>
+                                            <ColumnDefinition Width="70"/>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Text="{Binding Aktivitaet}" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Stunden}" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding Typ}" VerticalAlignment="Center"/>
+
+                                        <Button Grid.Column="3"
+                                                Content="×"
+                                                Click="DeleteActivityButton_Click"
+                                                DataContext="{Binding}"
+                                                Style="{StaticResource DangerButtonStyle}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <TextBlock x:Name="TotalBetrieblichHoursTextBlock"
+                                   FontFamily="Segoe UI Semibold"
+                                   Foreground="{StaticResource PrimaryBrush}"
+                                   Margin="0,6,0,12"/>
+
+                        <!-- Column Headers for Input Fields -->
+                        <Grid Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="260"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Beschreibung" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
+                            <TextBlock Grid.Column="1" Text="Stunden" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
+                            <TextBlock Grid.Column="2" Text="Typ" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
+                        </Grid>
+
+                        <!-- Input Fields -->
+                        <Grid Margin="0,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="260"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="NewActivityName" Margin="0,4,8,4"/>
+                            <TextBox Grid.Column="1" x:Name="NewActivityHours" Margin="0,4,8,4"/>
+                            <ComboBox Grid.Column="2" x:Name="NewActivityType" SelectedIndex="0" Margin="0,4,8,4">
+                                <ComboBoxItem Content="Normal"/>
+                                <ComboBoxItem Content="Urlaub"/>
+                                <ComboBoxItem Content="Krank"/>
+                            </ComboBox>
+
+                            <Button Grid.Column="3"
+                                    Content="Add"
+                                    Click="AddActivityButton_Click"
+                                    Style="{StaticResource PrimaryButtonStyle}"
+                                    Margin="0,4,0,4"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- ================= BESCHREIBUNG ================= -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Beschreibung eines Arbeitsvorgangs"
+                                   Style="{StaticResource SectionTitleStyle}"/>
+
+                        <TextBox Text="{Binding CurrentBerichtsheft.Beschreibung, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 AcceptsReturn="True"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"
+                                 Height="170"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- ================= SCHULE ================= -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Schulaktivitäten" Style="{StaticResource SectionTitleStyle}"/>
+
+                        <ListBox ItemsSource="{Binding CurrentBerichtsheft.Schule}" Height="150" x:Name="SchoolListBox">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="180"/>
+                                            <ColumnDefinition Width="260"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Text="{Binding Fach}" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Beschreibung}"
+                                                   TextWrapping="Wrap"
+                                                   VerticalAlignment="Center"/>
+
+                                        <Button Grid.Column="2"
+                                                Content="×"
+                                                Click="DeleteSchoolActivityButton_Click"
+                                                DataContext="{Binding}"
+                                                Style="{StaticResource DangerButtonStyle}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <!-- Column Headers for Input Fields -->
+                        <Grid Margin="0,6,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Fach" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
+                            <TextBlock Grid.Column="1" Text="Beschreibung" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
+                        </Grid>
+
+                        <!-- Input Fields -->
+                        <Grid Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="NewSchoolFach" Margin="0,4,8,4"/>
+                            <TextBox Grid.Column="1" x:Name="NewSchoolBeschreibung" Margin="0,4,0,4"/>
+                        </Grid>
+
+                        <Button Content="Add Schulaktivität"
+                                Click="AddSchoolActivityButton_Click"
+                                Width="170"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                HorizontalAlignment="Left"
+                                Margin="0,0,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- ================= HOURS ================= -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Stundenübersicht" Style="{StaticResource SectionTitleStyle}"/>
+
+                        <Grid Margin="0,4,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="120"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Schule Gesamtstunden:" Style="{StaticResource LabelStyle}"/>
+                            <TextBox Grid.Column="1"
+                                     x:Name="SchoolTotalHoursTextBox"
+                                     Text="{Binding CurrentBerichtsheft.TotalSchulStunden, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     TextChanged="SchoolTotalHoursTextBox_TextChanged"/>
+                        </Grid>
+
+                        <TextBlock x:Name="TotalHoursTextBlock"
+                                   FontFamily="Segoe UI Semibold"
+                                   Foreground="{StaticResource PrimaryBrush}"
+                                   Margin="0,6,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- ================= ACTIONS ================= -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,4,0,16">
+                    <Button Content="Clear All"
+                            Click="ClearAllButton_Click"
+                            Width="120"
+                            Height="38"
+                            Background="#DC3545"
+                            Foreground="White"
+                            FontFamily="Segoe UI Semibold"
+                            FontSize="13"
+                            Cursor="Hand"
+                            Margin="0,0,10,0"/>
+
+                    <Button Content="Als PDF exportieren"
+                            Command="{Binding ExportPdfCommand}"
+                            Width="170"
+                            Height="38"
+                            Margin="0,0,10,0"
+                            Style="{StaticResource PrimaryButtonStyle}"/>
+
+                    <Button Content="Save"
+                            Width="110"
+                            Height="38"
+                            Click="SaveButton_Click"
+                            Style="{StaticResource PrimaryButtonStyle}"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Window>

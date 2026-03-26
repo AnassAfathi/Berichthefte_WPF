@@ -4,6 +4,18 @@
              xmlns:local="clr-namespace:Berichthefte_WPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!-- Default Light Mode Colors -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#2F5D9F"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#EAF2FF"/>
+        <SolidColorBrush x:Key="BorderBrushCustom" Color="#D6DCE5"/>
+        <SolidColorBrush x:Key="CardBackgroundBrush" Color="White"/>
+        <SolidColorBrush x:Key="ButtonBrush" Color="#2F5D9F"/>
+        <SolidColorBrush x:Key="ButtonHoverBrush" Color="#24497E"/>
+        <SolidColorBrush x:Key="WindowBackground" Color="#F5F7FB"/>
+        <SolidColorBrush x:Key="TextForeground" Color="#1F2937"/>
+        <SolidColorBrush x:Key="TextBoxBackground" Color="White"/>
+        <SolidColorBrush x:Key="TextBoxForeground" Color="#1F2937"/>
+        <SolidColorBrush x:Key="DangerBrush" Color="#D9534F"/>
+        <SolidColorBrush x:Key="DangerHoverBrush" Color="#C9302C"/>
     </Application.Resources>
 </Application>

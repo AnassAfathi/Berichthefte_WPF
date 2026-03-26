@@ -4,6 +4,7 @@ using Berichthefte_WPF.Helpers;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using static Berichthefte_WPF.Models.BetrieblicheTaetigkeit;
 
 namespace Berichthefte_WPF
@@ -18,7 +19,16 @@ namespace Berichthefte_WPF
             _vm = new MainViewModel();
             DataContext = _vm;
             
+            // Initialize theme toggle state
+            ThemeToggleButton.IsChecked = ThemeManager.CurrentTheme == Theme.Dark;
+            
             UpdateTotals();
+        }
+
+        private void ThemeToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            var toggle = (ToggleButton)sender;
+            ThemeManager.CurrentTheme = toggle.IsChecked == true ? Theme.Dark : Theme.Light;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
