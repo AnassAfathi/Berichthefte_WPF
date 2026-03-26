@@ -20,7 +20,7 @@ namespace Berichthefte_WPF.Models
 
         public ReportStatus Status { get; set; }
 
-        // Single total school hours
+        // total school hours
         public double TotalSchulStunden { get; set; } = 0;
     }
 }

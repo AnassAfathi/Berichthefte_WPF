@@ -13,6 +13,21 @@ namespace Berichthefte_WPF.Services.Json
 {
     public class BerichtsheftPdfExportService : IPdfExportService
     {
+        /// <summary>
+        /// ExportToPdf() - Konvertiere Berichtsheft zu PDF und speichere in Datei
+        ///
+        /// 
+        /// PARAMETER:
+        /// • berichtsheft: Daten zum exportieren
+        /// • outputPath: Wo soll PDF gespeichert werden
+        /// 
+        /// FLOW:
+        /// 1. Validierung: berichtsheft != null?
+        /// 2. QuestPDF License setzen (Community)
+        /// 3. Document erstellen mit A4 Format
+        /// 4. 5 Sektionen aufbauen (Header, Betrieb, Beschreibung, Schule, Footer)
+        /// 5. GeneratePdf() - PDF in Datei schreiben
+        /// </summary>
         public void ExportToPdf(Berichtsheft berichtsheft, string outputPath)
         {
             if (berichtsheft == null)
@@ -43,44 +58,62 @@ namespace Berichthefte_WPF.Services.Json
             .GeneratePdf(outputPath);
         }
 
+        /// <summary>
+        /// BuildHeader() - Erstelle Header-Sektion mit Trainee-Informationen
+        /// 
+        /// ZEIGT:
+        /// • Name des Auszubildenden
+        /// • Firma und Abteilung
+        /// • Ausbildungsjahr
+        /// • Ausbildungsnachweis-Nummer
+        /// • Kalender-Woche und Zeitraum (Von/Bis)
+        /// </summary>
         private void BuildHeader(ColumnDescriptor column, Berichtsheft berichtsheft)
         {
             column.Item().Table(table =>
             {
                 table.ColumnsDefinition(columns =>
                 {
-                    columns.RelativeColumn(3);   // gauche 1
-                    columns.RelativeColumn(3);   // gauche 2
-                    columns.RelativeColumn(2);   // droite
+                    columns.RelativeColumn(3);   
+                    columns.RelativeColumn(3);   
+                    columns.RelativeColumn(2);   
                 });
 
-                // Ligne 1
+                
                 table.Cell().Border(1).Padding(5).Text($"Name: {berichtsheft.Trainee?.Name ?? string.Empty}").Bold();
                 table.Cell().BorderTop(1).BorderBottom(1).BorderRight(1).Padding(5).Text("");
                 table.Cell().Border(1).Padding(5).Text($"Ausbildungsnachweis Nr.: {berichtsheft.Zeitraum?.AusbildungsnachweisNr ?? 0}").Bold();
 
-                // Ligne 2
+                
                 table.Cell().BorderLeft(1).BorderRight(1).BorderBottom(1).Padding(5).Text($"Firma: {berichtsheft.Trainee?.Firma ?? string.Empty}").Bold();
                 table.Cell().BorderRight(1).BorderBottom(1).Padding(5).Text($"Ausbildungsabteilung: {berichtsheft.Trainee?.Abteilung ?? string.Empty}").Bold();
                 table.Cell().BorderRight(1).BorderBottom(1).Padding(5).Text($"Ausbildungsjahr: {berichtsheft.Trainee?.Ausbildungsjahr ?? 0}").Bold();
 
-                // Ligne 3
+                
                 table.Cell().BorderLeft(1).BorderRight(1).BorderBottom(1).Padding(5).Text("");
                 table.Cell().BorderRight(1).BorderBottom(1).Padding(5).Text("");
                 table.Cell().BorderRight(1).BorderBottom(1).Padding(5).Text($"Woche: {berichtsheft.Zeitraum?.KalenderWoche ?? 0}").Bold();
 
-                // Ligne 4
+                
                 table.Cell().BorderLeft(1).BorderRight(1).BorderBottom(1).Padding(5).Text("");
                 table.Cell().BorderRight(1).BorderBottom(1).Padding(5).Text("");
                 table.Cell().BorderRight(1).BorderBottom(1).Padding(5).Text($"vom: {FormatDate(berichtsheft.Zeitraum?.Von)}").Bold();
 
-                // Ligne 5
+                
                 table.Cell().BorderLeft(1).BorderRight(1).BorderBottom(1).Padding(5).Text("");
                 table.Cell().BorderRight(1).BorderBottom(1).Padding(5).Text("");
                 table.Cell().BorderRight(1).BorderBottom(1).Padding(5).Text($"bis: {FormatDate(berichtsheft.Zeitraum?.Bis)}").Bold();
             });
         }
 
+        /// <summary>
+        /// BuildBetriebSection() - Erstelle Sektion für betriebliche Tätigkeiten
+        /// 
+        /// ZEIGT:
+        /// • Liste aller betrieblichen Tätigkeiten
+        /// • Aktivitätsbeschreibung mit Typ (Normal/Urlaub/Krank)
+        /// • Zugehörige Stunden für jede Tätigkeit      
+        /// </summary>
         private void BuildBetriebSection(ColumnDescriptor column, Berichtsheft berichtsheft)
         {
             column.Item().Table(table =>
@@ -138,6 +171,14 @@ namespace Berichthefte_WPF.Services.Json
             });
         }
 
+        /// <summary>
+        /// BuildBeschreibungSection() - Erstelle Sektion für Arbeitsvorgangs-Beschreibung
+        /// 
+        /// ZEIGT:
+        /// • Freitextfeld für Beschreibung eines Arbeitsvorgangs dieser Woche
+        /// • Großes Textfeld mit Mindesthöhe 160px
+        /// 
+        /// </summary>
         private void BuildBeschreibungSection(ColumnDescriptor column, Berichtsheft berichtsheft)
         {
             column.Item().Table(table =>
@@ -162,6 +203,14 @@ namespace Berichthefte_WPF.Services.Json
             });
         }
 
+        /// <summary>
+        /// BuildSchuleSection() - Erstelle Sektion für Schulaktivitäten und Gesamtstunden
+        /// 
+        /// ZEIGT:
+        /// • Liste aller Schulaktivitäten (Fach + Beschreibung)
+        /// • Schulstunden-Summe
+        /// • Gesamtstunden (Betrieb + Schule)
+        /// </summary>
         private void BuildSchuleSection(ColumnDescriptor column, Berichtsheft berichtsheft)
         {
             column.Item().Table(table =>
@@ -224,6 +273,15 @@ namespace Berichthefte_WPF.Services.Json
             });
         }
 
+        /// <summary>
+        /// BuildFooter() - Erstelle Footer mit Unterschriftsfeldern
+        /// 
+        /// ZEIGT:
+        /// • "Für die Richtigkeit" Label
+        /// • Datum-Feld mit Signatur-Datum
+        /// • Unterschriftslinie für Auszubildenden
+        /// • Unterschriftslinie für Ausbilder
+        /// </summary>
         private void BuildFooter(ColumnDescriptor column, Berichtsheft berichtsheft)
         {
             column.Item().Table(table =>
@@ -236,7 +294,6 @@ namespace Berichthefte_WPF.Services.Json
                     columns.RelativeColumn(1.2f);
                 });
 
-                // ligne 1
                 table.Cell().BorderLeft(1).BorderRight(1).BorderBottom(1).Padding(4).Text("Für die\nRichtigkeit").FontSize(8);
 
                 table.Cell().BorderRight(1).BorderBottom(1).Padding(4).Column(col =>
@@ -262,16 +319,38 @@ namespace Berichthefte_WPF.Services.Json
             });
         }
 
+        /// <summary>
+        /// FormatDate() - Formatiere DateTime zu deutschem Datumsformat
+        /// 
+        /// KONVERTIERT:
+        /// • DateTime zu "dd.MM.yyyy" Format
+        /// • Falls null: Leerer String
+        /// </summary>
         private string FormatDate(DateTime? date)
         {
             return date?.ToString("dd.MM.yyyy") ?? string.Empty;
         }
 
+        /// <summary>
+        /// FormatSignatureDate() - Formatiere Signatur-Datum zu deutschem Format
+        /// 
+        /// KONVERTIERT:
+        /// • Signatur DateTime zu "dd.MM.yyyy" Format
+        /// • Falls null: Leerer String
+        /// </summary>
         private string FormatSignatureDate(DateTime? date)
         {
             return date?.ToString("dd.MM.yyyy") ?? string.Empty;
         }
 
+        /// <summary>
+        /// GetGesamtstunden() - Berechne Summe aller Stunden (Betrieb + Schule)
+        /// 
+        /// BERECHNET:
+        /// • Summe aller betrieblichen Stunden
+        /// • Plus Schulstunden
+        /// • Gibt Gesamtsumme zurück
+        /// </summary>
         private double GetGesamtstunden(Berichtsheft berichtsheft)
         {
             double betrieb = berichtsheft.Betrieb?.Sum(x => x.Stunden) ?? 0;
