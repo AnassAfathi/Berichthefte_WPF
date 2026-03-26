@@ -14,7 +14,7 @@ namespace Berichthefte_WPF.Models
             Urlaub,
             Krank
         }
-        public string Aktivitaet { get; set; }
+        public string? Aktivitaet { get; set; }
         public double Stunden { get; set; }
         public TaetigkeitTyp Typ { get; set; }
     }

@@ -10,11 +10,11 @@ namespace Berichthefte_WPF.Models
     public class TraineeInfo
     {
         [Required]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [Required]
-        public string Firma { get; set; }
+        public string? Firma { get; set; }
         [Required]
-        public string Abteilung { get; set; }
+        public string? Abteilung { get; set; }
         [Range(1, 4)]
         public int Ausbildungsjahr { get; set; }
     }
