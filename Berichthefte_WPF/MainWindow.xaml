@@ -173,16 +173,16 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Text="Name:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Name}"/>
+                        <TextBox Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock Grid.Row="1" Text="Firma:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Firma}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Firma, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock Grid.Row="2" Text="Abteilung:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Abteilung}"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Abteilung, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock Grid.Row="3" Text="Ausbildungsjahr:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Ausbildungsjahr}"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurrentBerichtsheft.Trainee.Ausbildungsjahr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                 </StackPanel>
             </Border>
@@ -257,9 +257,10 @@
                     <TextBlock x:Name="TotalBetrieblichHoursTextBlock"
                                FontFamily="Segoe UI Semibold"
                                Foreground="{StaticResource PrimaryBrush}"
-                               Margin="0,6,0,8"/>
+                               Margin="0,6,0,12"/>
 
-                    <Grid>
+                    <!-- Column Headers for Input Fields -->
+                    <Grid Margin="0,0,0,6">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="260"/>
                             <ColumnDefinition Width="80"/>
@@ -267,9 +268,23 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox x:Name="NewActivityName"/>
-                        <TextBox Grid.Column="1" x:Name="NewActivityHours"/>
-                        <ComboBox Grid.Column="2" x:Name="NewActivityType" SelectedIndex="0">
+                        <TextBlock Text="Beschreibung" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
+                        <TextBlock Grid.Column="1" Text="Stunden" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
+                        <TextBlock Grid.Column="2" Text="Typ" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
+                    </Grid>
+
+                    <!-- Input Fields -->
+                    <Grid Margin="0,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="260"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="NewActivityName" Margin="0,4,8,4"/>
+                        <TextBox Grid.Column="1" x:Name="NewActivityHours" Margin="0,4,8,4"/>
+                        <ComboBox Grid.Column="2" x:Name="NewActivityType" SelectedIndex="0" Margin="0,4,8,4">
                             <ComboBoxItem Content="Normal"/>
                             <ComboBoxItem Content="Urlaub"/>
                             <ComboBoxItem Content="Krank"/>
@@ -278,7 +293,8 @@
                         <Button Grid.Column="3"
                                 Content="Add"
                                 Click="AddActivityButton_Click"
-                                Style="{StaticResource PrimaryButtonStyle}"/>
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Margin="0,4,0,4"/>
                     </Grid>
                 </StackPanel>
             </Border>
@@ -289,7 +305,7 @@
                     <TextBlock Text="Beschreibung eines Arbeitsvorgangs"
                                Style="{StaticResource SectionTitleStyle}"/>
 
-                    <TextBox Text="{Binding CurrentBerichtsheft.Beschreibung, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding CurrentBerichtsheft.Beschreibung, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              AcceptsReturn="True"
                              TextWrapping="Wrap"
                              VerticalScrollBarVisibility="Auto"
@@ -328,14 +344,26 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <Grid Margin="0,6,0,0">
+                    <!-- Column Headers for Input Fields -->
+                    <Grid Margin="0,6,0,6">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="180"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox x:Name="NewSchoolFach"/>
-                        <TextBox Grid.Column="1" x:Name="NewSchoolBeschreibung"/>
+                        <TextBlock Text="Fach" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
+                        <TextBlock Grid.Column="1" Text="Beschreibung" FontFamily="Segoe UI Semibold" FontSize="11" Foreground="#666"/>
+                    </Grid>
+
+                    <!-- Input Fields -->
+                    <Grid Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="NewSchoolFach" Margin="0,4,8,4"/>
+                        <TextBox Grid.Column="1" x:Name="NewSchoolBeschreibung" Margin="0,4,0,4"/>
                     </Grid>
 
                     <Button Content="Add Schulaktivität"
@@ -343,7 +371,7 @@
                             Width="170"
                             Style="{StaticResource PrimaryButtonStyle}"
                             HorizontalAlignment="Left"
-                            Margin="0,8,0,0"/>
+                            Margin="0,0,0,0"/>
                 </StackPanel>
             </Border>
 
@@ -361,6 +389,7 @@
                         <TextBlock Text="Schule Gesamtstunden:" Style="{StaticResource LabelStyle}"/>
                         <TextBox Grid.Column="1"
                                  x:Name="SchoolTotalHoursTextBox"
+                                 Text="{Binding CurrentBerichtsheft.TotalSchulStunden, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  TextChanged="SchoolTotalHoursTextBox_TextChanged"/>
                     </Grid>
 
@@ -375,6 +404,17 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Margin="0,4,0,16">
+                <Button Content="Clear All"
+                        Click="ClearAllButton_Click"
+                        Width="120"
+                        Height="38"
+                        Background="#DC3545"
+                        Foreground="White"
+                        FontFamily="Segoe UI Semibold"
+                        FontSize="13"
+                        Cursor="Hand"
+                        Margin="0,0,10,0"/>
+
                 <Button Content="Als PDF exportieren"
                         Command="{Binding ExportPdfCommand}"
                         Width="170"
