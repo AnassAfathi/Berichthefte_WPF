@@ -1,37 +1,21 @@
 {
   "Trainee": {
-    "Name": "Youssef",
-    "Firma": "Elmzandi",
-    "Abteilung": "IT",
-    "Ausbildungsjahr": 1
+    "Name": null,
+    "Firma": null,
+    "Abteilung": null,
+    "Ausbildungsjahr": 0
   },
   "Zeitraum": {
-    "Von": "2026-03-26T00:00:00",
-    "Bis": "2026-03-29T00:00:00",
-    "KalenderWoche": 12,
-    "AusbildungsnachweisNr": 101
+    "Von": null,
+    "Bis": null,
+    "KalenderWoche": 0,
+    "AusbildungsnachweisNr": 0
   },
-  "Betrieb": [
-    {
-      "Aktivitaet": "UI",
-      "Stunden": 16,
-      "Typ": 0
-    },
-    {
-      "Aktivitaet": "UI ",
-      "Stunden": 16,
-      "Typ": 0
-    }
-  ],
-  "Beschreibung": "Hamid",
-  "Schule": [
-    {
-      "Fach": "GK",
-      "Beschreibung": "Europe"
-    }
-  ],
+  "Betrieb": [],
+  "Beschreibung": "",
+  "Schule": [],
   "TraineeSignature": null,
   "AusbilderSignature": null,
   "Status": 0,
-  "TotalSchulStunden": 8
+  "TotalSchulStunden": 0
 }
