@@ -55,12 +55,6 @@ The application generates printable PDF training reports that follow the layout 
 
 ---
 
-## 📷 Screenshots
-
-You can add screenshots of the application here.
-
----
-
 ## 👨‍💻 Author
 
 **Anass Afathi**
